@@ -1,16 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const navLinks = [
-  { label: 'Início', href: '#inicio' },
-  { label: 'Loteamento', href: '#empreendimento' },
-  { label: 'Galeria', href: '#galeria' },
+  { label: 'O Empreendimento', href: '#empreendimento' },
   { label: 'Infraestrutura', href: '#infraestrutura' },
+  { label: 'Galeria', href: '#galeria' },
   { label: 'Contato', href: '#contato' },
-  { label: 'Cadastre-se', href: '#cadastro' },
-  { label: 'Sou Corretor', href: '#corretor' },
-  { label: 'Book', href: '#book' },
 ];
 
 const Header = () => {
@@ -26,101 +22,106 @@ const Header = () => {
   }, []);
 
   const scrollToSection = (href: string) => {
-    if (href === '#inicio') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      const element = document.querySelector(href);
-      if (element) {
-        const headerOffset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    const element = document.querySelector(href);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
     setIsMobileMenuOpen(false);
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ease-in-out ${isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-xl py-3'
-          : 'bg-white/80 backdrop-blur-sm py-5'
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ease-in-out ${isScrolled
+          ? 'bg-[#05150d] py-3 shadow-2xl border-b border-white/5'
+          : 'bg-transparent py-8'
         }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-4 lg:px-8">
-        {/* Logo Oficial */}
+      <div className="container mx-auto flex items-center justify-between px-6 lg:px-12">
+        {/* Logo - Tamanho ajustado para Impacto */}
         <button
-          onClick={() => scrollToSection('#inicio')}
-          className="flex items-center group transition-transform hover:scale-105 active:scale-95"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="flex items-center group"
         >
           <img
             src="/logo.png"
             alt="Residencial Campo Verde"
-            className={`transition-all duration-500 ${isScrolled ? 'h-10' : 'h-14'} w-auto object-contain`}
+            className={`transition-all duration-700 ${isScrolled ? 'h-10' : 'h-16'} w-auto object-contain brightness-0 invert`}
           />
         </button>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden xl:flex items-center gap-6">
+        {/* Desktop Navigation - Minimalista */}
+        <nav className="hidden xl:flex items-center gap-12">
           {navLinks.map((link) => (
             <button
               key={link.label}
               onClick={() => scrollToSection(link.href)}
-              className="text-[11px] font-black text-[#1a4a31] hover:text-primary transition-colors relative group uppercase tracking-[0.15em]"
+              className="text-[11px] font-medium text-white/70 hover:text-white transition-all relative group uppercase tracking-[0.2em]"
             >
               {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full" />
+              <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-emerald-500 transition-all group-hover:w-full opacity-50" />
             </button>
           ))}
         </nav>
 
-        {/* Desktop CTA */}
+        {/* Desktop CTA - Exclusividade */}
         <div className="hidden lg:flex items-center">
           <Button
-            onClick={() => window.open('https://wa.me/5593999999999', '_blank')}
-            className="bg-[#0b2b1a] hover:bg-[#15462c] text-white rounded-full px-6 py-5 flex items-center gap-3 shadow-[0_10px_30px_rgba(11,43,26,0.3)] transition-all hover:scale-105 active:scale-95"
+            onClick={() => scrollToSection('#contato')}
+            className="bg-emerald-600 hover:bg-emerald-500 text-white rounded-none border border-emerald-400/30 px-8 py-7 flex items-center gap-3 shadow-[0_15px_35px_rgba(16,185,129,0.2)] transition-all hover:scale-105 active:scale-95 group"
           >
-            <div className="bg-white/20 rounded-full p-1">
-              <Phone className="w-3 h-3 text-white fill-current" />
-            </div>
-            <span className="font-black tracking-[0.1em] uppercase text-[10px]">Falar com Corretor</span>
+            <Calendar className="w-4 h-4 transition-transform group-hover:rotate-12" />
+            <span className="font-bold tracking-[0.2em] uppercase text-[11px]">Agendar Visita</span>
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button - Elegante */}
         <button
-          className="xl:hidden p-2 text-[#1a4a31] flex items-center gap-2 hover:bg-black/5 rounded-full transition-colors"
+          className="xl:hidden p-3 text-white flex items-center gap-3 group"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <span className="text-[10px] font-black uppercase tracking-widest hidden sm:block">Menu</span>
-          {isMobileMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+          <div className="flex flex-col gap-1.5 items-end">
+            <div className="w-6 h-[1px] bg-white group-hover:w-8 transition-all" />
+            <div className="w-4 h-[1px] bg-white group-hover:w-8 transition-all" />
+          </div>
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu Overlay - Fullscreen Imersivo */}
       {isMobileMenuOpen && (
-        <div className="xl:hidden fixed inset-0 top-[72px] bg-white z-[90] animate-in fade-in slide-in-from-top-4 duration-300">
-          <nav className="container mx-auto py-10 px-6 flex flex-col gap-6 h-full overflow-y-auto">
+        <div className="xl:hidden fixed inset-0 bg-[#05150d] z-[90] flex flex-col items-center justify-center animate-in fade-in duration-500">
+          <button
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="absolute top-8 right-8 text-white/50 hover:text-white"
+          >
+            <X className="w-10 h-10" />
+          </button>
+
+          <nav className="flex flex-col gap-10 text-center">
             {navLinks.map((link) => (
               <button
                 key={link.label}
                 onClick={() => scrollToSection(link.href)}
-                className="text-2xl font-black text-[#1a4a31] hover:text-primary transition-colors text-left border-b border-gray-100 pb-5 uppercase tracking-tighter"
+                className="text-3xl font-light text-white/60 hover:text-emerald-400 transition-colors uppercase tracking-[0.3em]"
               >
                 {link.label}
               </button>
             ))}
-            <div className="mt-auto pb-10">
+            <div className="mt-10">
               <Button
-                onClick={() => window.open('https://wa.me/5593999999999', '_blank')}
-                className="w-full bg-[#0b2b1a] hover:bg-[#15462c] text-white rounded-full py-10 gap-4 text-xl font-black shadow-2xl uppercase tracking-widest"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  scrollToSection('#contato');
+                }}
+                className="bg-emerald-600 hover:bg-emerald-500 text-white rounded-none px-12 py-10 text-xl font-bold uppercase tracking-[0.3em] shadow-2xl"
               >
-                <Phone className="w-6 h-6" />
-                <span>Atendimento WhatsApp</span>
+                Agendar Visita
               </Button>
             </div>
           </nav>
