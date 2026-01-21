@@ -61,7 +61,7 @@ const HeroSection = () => {
         >
           <h2 className="text-2xl md:text-4xl font-black text-white leading-tight drop-shadow-lg">
             <span className="text-emerald-400">ZERO ENTRADA</span> e parcelas em até 144x. <br className="hidden md:block" />
-            Obras aceleradas e valorização real em Nova Venécia.
+            Obras aceleradas e valorização real em Santarém - PA.
           </h2>
           <p className="text-white/80 text-lg md:text-xl font-medium max-w-2xl mx-auto drop-shadow-md">
             Realize o sonho de viver com segurança e infraestrutura completa. <br className="hidden md:block" />
@@ -96,7 +96,7 @@ const HeroSection = () => {
             onClick={() => window.open('https://wa.me/5593999999999', '_blank')}
             className="w-full sm:w-auto border-2 border-white/30 hover:border-white bg-white/5 hover:bg-white/10 text-white font-black rounded-full px-12 py-9 text-xl backdrop-blur-md transition-all hover:scale-105 active:scale-95 uppercase tracking-tighter flex items-center justify-center gap-4"
           >
-            <span>FALAR COM CORRETOR</span>
+            <span>FALAR COM ESPECIALISTA</span>
           </Button>
         </motion.div>
 

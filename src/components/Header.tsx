@@ -39,8 +39,8 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 ease-in-out ${isScrolled
-          ? 'bg-[#05150d] py-3 shadow-2xl border-b border-white/5'
-          : 'bg-transparent py-8'
+        ? 'bg-[#05150d] py-3 shadow-2xl border-b border-white/5'
+        : 'bg-gradient-to-b from-black/80 via-black/40 to-transparent py-8'
         }`}
     >
       <div className="container mx-auto flex items-center justify-between px-6 lg:px-12">
@@ -52,20 +52,20 @@ const Header = () => {
           <img
             src="/logo.png"
             alt="Residencial Campo Verde"
-            className={`transition-all duration-700 ${isScrolled ? 'h-10' : 'h-16'} w-auto object-contain brightness-0 invert`}
+            className={`transition-all duration-700 ${isScrolled ? 'h-10' : 'h-20'} w-auto object-contain brightness-0 invert`}
           />
         </button>
 
-        {/* Desktop Navigation - Minimalista */}
-        <nav className="hidden xl:flex items-center gap-12">
+        {/* Desktop Navigation - Minimalista e Legível */}
+        <nav className="hidden xl:flex items-center gap-14">
           {navLinks.map((link) => (
             <button
               key={link.label}
               onClick={() => scrollToSection(link.href)}
-              className="text-[11px] font-medium text-white/70 hover:text-white transition-all relative group uppercase tracking-[0.2em]"
+              className="text-[13px] font-semibold text-white/90 hover:text-white transition-all relative group uppercase tracking-[0.15em]"
             >
               {link.label}
-              <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-emerald-500 transition-all group-hover:w-full opacity-50" />
+              <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-emerald-500 transition-all group-hover:w-full" />
             </button>
           ))}
         </nav>
@@ -74,10 +74,10 @@ const Header = () => {
         <div className="hidden lg:flex items-center">
           <Button
             onClick={() => scrollToSection('#contato')}
-            className="bg-emerald-600 hover:bg-emerald-500 text-white rounded-none border border-emerald-400/30 px-8 py-7 flex items-center gap-3 shadow-[0_15px_35px_rgba(16,185,129,0.2)] transition-all hover:scale-105 active:scale-95 group"
+            className="bg-emerald-600 hover:bg-emerald-500 text-white rounded-none border border-emerald-400/30 px-10 py-8 flex items-center gap-3 shadow-[0_15px_35px_rgba(16,185,129,0.3)] transition-all hover:scale-105 active:scale-95 group"
           >
-            <Calendar className="w-4 h-4 transition-transform group-hover:rotate-12" />
-            <span className="font-bold tracking-[0.2em] uppercase text-[11px]">Agendar Visita</span>
+            <Calendar className="w-5 h-5 transition-transform group-hover:rotate-12 text-emerald-200" />
+            <span className="font-bold tracking-[0.2em] uppercase text-[12px]">Agendar Visita</span>
           </Button>
         </div>
 
@@ -86,9 +86,9 @@ const Header = () => {
           className="xl:hidden p-3 text-white flex items-center gap-3 group"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <div className="flex flex-col gap-1.5 items-end">
-            <div className="w-6 h-[1px] bg-white group-hover:w-8 transition-all" />
-            <div className="w-4 h-[1px] bg-white group-hover:w-8 transition-all" />
+          <div className="flex flex-col gap-2 items-end">
+            <div className="w-8 h-[2px] bg-white group-hover:w-10 transition-all shadow-lg" />
+            <div className="w-5 h-[2px] bg-white group-hover:w-10 transition-all shadow-lg" />
           </div>
         </button>
       </div>
